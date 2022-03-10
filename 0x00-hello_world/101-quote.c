@@ -1,13 +1,14 @@
-#include <unistd.h>
-
+#include <stdio.h>
 /**
- * main - Prints quote to the standard error
+ * main - main function
  *
- * Return: zero on success
- *
+ * Return: end program
  */
 int main(void)
 {
-	write(2, "and that piece of art is useful - Dora Korpar, 2015-10-19\n", 58);
+	char n[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
+
+	fprintf(stderr, "%s\n", n);
+
 	return (1);
 }
