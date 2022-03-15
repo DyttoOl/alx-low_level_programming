@@ -1,18 +1,26 @@
-#include <unistd.h>
+#include <stdio.h>
 
-void ft_putchar(char c) { write(STDOUT_FILENO, &c, 1); }
+int main()
+{
+	//loop counter or a variable that
+	//will store initial alphabet,
+	//from where we will print the alphabets
+	char alphabet;
+	//assigning 'a' as initial alphabet
+	alphabet='a';
 
-void ft_print_alphabet(void) {
-  char letter;
+	//print statement
+	printf("Lowercase alphabets:\n");
 
-  letter = 'a';
-  while (letter <= 'z') {
-    ft_putchar(letter);
-    letter++;
-  }
-}
+	//loop statement, that will check the condition
+	//and print the alphabets from 'a' to 'z'
+	while(alphabet<='z')
+	{
+		//printing the alphabets
+		printf("%c ",alphabet);
+		//increasing the value by 1
+		alphabet++;
+	}
 
-int main(void) {
-  ft_print_alphabet();
-  return 0;
+	return 0;
 }
