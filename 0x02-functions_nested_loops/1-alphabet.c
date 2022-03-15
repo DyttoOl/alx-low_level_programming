@@ -1,16 +1,18 @@
-#include < stdio.h >
+#include <unistd.h>
 
-int main()
-{
-    char ch = 'a';
+void ft_putchar(char c) { write(STDOUT_FILENO, &c, 1); }
 
-    printf("Lowercase English Alphabets:\n");
-    while(ch <= 'z')
-    {
-        printf("%c ", ch);
-        ch++;
-    }
-    printf("\n");
+void ft_print_alphabet(void) {
+  char letter;
 
-    return 0;
+  letter = 'a';
+  while (letter <= 'z') {
+    ft_putchar(letter);
+    letter++;
+  }
+}
+
+int main(void) {
+  ft_print_alphabet();
+  return 0;
 }
