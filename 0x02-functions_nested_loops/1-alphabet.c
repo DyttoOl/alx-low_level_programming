@@ -1,26 +1,14 @@
-#include <stdio.h>
+#include "main.h"
 
-int main()
+/**
+ * print_alphabet - prints the alphabet in lowercase, followed by a new line.
+ */
+void print_alphabet(void)
 {
-	//loop counter or a variable that
-	//will store initial alphabet,
-	//from where we will print the alphabets
-	char alphabet;
-	//assigning 'a' as initial alphabet
-	alphabet='a';
+	char letter;
 
-	//print statement
-	printf("Lowercase alphabets:\n");
+	for (letter = 'a'; letter <= 'z'; letter++)
+		_putchar(letter);
 
-	//loop statement, that will check the condition
-	//and print the alphabets from 'a' to 'z'
-	while(alphabet<='z')
-	{
-		//printing the alphabets
-		printf("%c ",alphabet);
-		//increasing the value by 1
-		alphabet++;
-	}
-
-	return 0;
+	_putchar('\n');
 }
