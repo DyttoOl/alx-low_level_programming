@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * print_alphabet - prints lower case alphabet
+ *
+ **/
+
 void    ft_print_alphabet(void)
 {
     char    letter;
