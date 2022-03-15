@@ -1,24 +1,16 @@
-#include <stdio.h>
+#include < stdio.h >
 
-/**
- * print_alphabet - prints lower case alphabet
- *
- **/
-
-void    ft_print_alphabet(void)
+int main()
 {
-    char    letter;
+    char ch = 'a';
 
-    letter = 'a';
-    while (letter <= 'z')
+    printf("Lowercase English Alphabets:\n");
+    while(ch <= 'z')
     {
-        putchar(letter);
-        letter++;
+        printf("%c ", ch);
+        ch++;
     }
-}
+    printf("\n");
 
-int main(void)
-{
-    ft_print_alphabet();
     return 0;
 }
