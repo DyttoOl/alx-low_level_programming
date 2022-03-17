@@ -21,4 +21,3 @@ void print_most_numbers(void)
 	}
 	_putchar('\n');
 }
-© 2022 GitHub, Inc.
