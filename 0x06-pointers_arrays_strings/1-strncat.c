@@ -1,17 +1,27 @@
-#include <stdio.h>
-#include <string.h>
 #include "main.h"
 
-#define DEST_SIZE 40
-
-int main()
+/**
+ * _strncat - appends src to the dest string
+ * @dest: string to append by src
+ * @src: string to append to dest
+ * @n: largest number of bytes to append
+ *
+ * Return: address of dest
+ */
+char *_strncat(char *dest, char *src, int n)
 {
-	char src[] = "World Here";
-	char dest[DEST_SIZE] = "Hello";
+	int i, j;
 
-	strncat(dest, src, 5);
-	printf(dest);
-
-	return 0;
+	i = j = 0;
+	while (*(dest + i))
+		i++;
+	while (j < n && *(src + j))
+	{
+		*(dest + i) = *(src + j);
+		i++;
+		j++;
+	}
+	if (j < n)
+		*(dest + i) = *(src + j);
+	return (dest);
 }
-
