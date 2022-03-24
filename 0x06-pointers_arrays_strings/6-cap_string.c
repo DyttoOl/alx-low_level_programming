@@ -1,59 +1,31 @@
 #include "main.h"
-#include <stddef.h>
-#include <stdio.h>
 
 /**
- * upper - capitalizes a letter if it is lowercase
- * @c: pointer to a string
- * Return: pointer to string
- **/
-char *upper(char *c)
+ * cap_string - capitalizes all words in a string
+ * @s: string to capitalize
+ *
+ * Return: address of s
+ */
+char *cap_string(char *s)
 {
-	if (c[0] >= 'a' && c[0] <= 'z')
-		c[0] -= 32;
-	return (c);
-}
+	int i = 0, j;
+	char a[] = " \t\n,;.!?\"(){}";
 
-/**
- * new_word - compares char to chars that indicate a new word
- * @c: char to check
- * Return: 1 if char is a word separator, 0 of not
- **/
-int new_word(char c)
-{
-	int i = 0;
-	char *word = " \t\n,;.!?\"(){}";
-
-	while (word[i] != '\0')
+	while (*(s + i))
 	{
-		if (c == word[i])
-			return (1);
-		i++;
-	}
-
-	return (0);
-}
-
-/**
- * cap_string - capitalize all words in a string
- * @str: string to modify
- * Return: pointer to str
- **/
-char *cap_string(char *str)
-{
-	int i;
-
-	if (str == NULL)
-		return (NULL);
-	upper(str);
-	if (str[0] == '\0')
-		return (str);
-
-	for (i = 1; str[i] != '\0'; i++)
-	{
-		if (new_word(str[i - 1]) == 1)
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
-			upper(&str[i]);
+			if (i == 0)
+				*(s + i) -= 'a' - 'A';
+			else
+			{
+				for (j = 0; j <= 12; j++)
+				{
+					if (a[j] == *(s + i - 1))
+						*(s + i) -= 'a' - 'A';
+				}
+			}
 		}
+		i++;
+		return (s);
 	}
-	return (str);
