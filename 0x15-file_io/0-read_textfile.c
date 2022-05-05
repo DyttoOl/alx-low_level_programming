@@ -1,9 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
 
 /**
  * read_textfile - reads a text file and prints it to the POSIX standard output
@@ -14,31 +9,28 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd;
-	ssize_t lenr, lenw;
-	char *buffer;
+	char *print_field;
+	int file, read_file;
 
-	if (filename == NULL)
+	if (!filename)
 		return (0);
-	fd = open(filename, O-RDONLY);
-	if (fd == -1)
+
+	/*Create the buffer print_field*/
+	print_field = malloc(letters * sizeof(char));
+	if (print_field == NULL)
 		return (0);
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
-	{
-		close(fd);
+
+	/*Open the file*/
+	file = open(filename, O_RDONLY);
+	if (file == -1)
 		return (0);
-	}
-	lenr = read(fd, buffer, letters);
-	close(fd);
-	if (lenr == -1)
-	{
-		free(buffer);
-		return (0);
-	}
-	lenw = write(STDOUT_FILENO, buffer, lenr);
-	free(buffer);
-	if (lenr != lenw)
-		return (0);
-	return (lenw);
+
+	/*Read the file and save in buffer*/
+	read_file = read(file, print_field, letters);
+	/*Write as standard output*/
+	write(STDOUT_FILENO, print_field, read_file);
+
+	close(file);
+	free(print_field);
+	return (read_file);
 }
