@@ -2,35 +2,31 @@
 
 /**
  * read_textfile - reads a text file and prints it to the POSIX standard output
- * @filename: name of the file to read
- * @letters: number of letters it should read and print
- *
- * Return: actual number of letters it could read and print
+ * @filename: pointer to text in a file
+ * @letters: number of letters
+ * Return: the actual number of letters it could read and print
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *print_field;
-	int file, read_file;
+    ssize_t file, fread, fwrite;
+    char *totalSize;
 
-	if (!filename)
-		return (0);
+    totalSize = malloc(sizeof(char) * letters);
+    if (totalSize == NULL)
+        return (0);
+    if (filename == NULL)
+        return (0);
 
-	/*Create the buffer print_field*/
-	print_field = malloc(letters * sizeof(char));
-	if (print_field == NULL)
-		return (0);
-
-	/*Open the file*/
-	file = open(filename, O_RDONLY);
-	if (file == -1)
-		return (0);
-
-	/*Read the file and save in buffer*/
-	read_file = read(file, print_field, letters);
-	/*Write as standard output*/
-	write(STDOUT_FILENO, print_field, read_file);
-
-	close(file);
-	free(print_field);
-	return (read_file);
+    file = open(filename, O_RDONLY);
+    if (file == -1)
+        return (0);
+    fread = read(file, totalSize, letters);
+    if (fread == -1)
+        return (0);
+    fwrite = write(STDOUT_FILENO, totalSize, fread);
+    if (fwrite == -1)
+        return (0);
+    close(file);
+    free(totalSize);
+    return (fwrite);
 }
